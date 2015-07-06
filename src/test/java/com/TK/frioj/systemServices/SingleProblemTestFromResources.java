@@ -24,7 +24,7 @@ import com.TK.frioj.enums.SubmissionStatus;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-test-config.xml" })
 public class SingleProblemTestFromResources {
-
+/*
 	private static final Logger logger = LoggerFactory.getLogger(SingleProblemTestFromResources.class);
 	
 	private Submission sub;
@@ -82,5 +82,5 @@ public class SingleProblemTestFromResources {
 		input.close();
 		return sb.toString();
 		
-	}
+	}*/
 }

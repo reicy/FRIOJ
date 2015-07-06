@@ -25,7 +25,7 @@ import com.TK.frioj.services.SubmissionService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-test-config.xml" })
 public class SingleProblemTest {
-	
+	/*
 	private static final Logger logger = LoggerFactory.getLogger(SingleProblemTest.class);
 
 	
@@ -110,6 +110,6 @@ public class SingleProblemTest {
 	}
 	
 	
-
+*/
 	
 }

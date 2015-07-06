@@ -1,6 +1,8 @@
 package com.TK.frioj.systemServices;
 
 import java.util.ArrayList;
+
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +11,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Factory;
+
 import com.TK.frioj.dao.SettingsDao;
 import com.TK.frioj.daoImpl.FileSettingsDao;
 import com.TK.frioj.enums.Languages;
 import com.TK.frioj.enums.SubmissionStatus;
 import com.TK.frioj.services.SubmissionService;
+
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,9 +31,9 @@ public class ProblemRunnerServiceTest {
 	private SettingsDao settingsDao;
 	
 	private SubmissionService submissionService;
-
+/*
 	
-	
+	@Ignore
 	@BeforeTest
 	public void initializeAppContext() {
 		settingsDao = new FileSettingsDao();
@@ -38,28 +42,10 @@ public class ProblemRunnerServiceTest {
 		problemRunner = (ProblemRunnerService) ac.getBean("problemRunnerService");
 	}
 
-/*
-	@SuppressWarnings("unchecked")
-	@Factory
-	public Object[] allProblemsC(){
-		ApplicationContext ac = new ClassPathXmlApplicationContext("spring-test-config.xml");
-		
-			SingleProblemTest single;
-			
-			ArrayList<SingleProblemTest> arr = new ArrayList<SingleProblemTest>();
-			//arr.add(single);
-			
-			for (int i = 1; i < 50; i++) {
-				
-				single = new SingleProblemTest(i, Languages.C, SubmissionStatus.AC, ac);
-				arr.add(single);
-			}
-			return arr.toArray();
-	}
-	*/
+
 
 		
-	
+	@Ignore
 	@Factory
 	public Object[] cppTest(){
 		ArrayList<SingleProblemTestFromResources> arr = new ArrayList<SingleProblemTestFromResources>();
@@ -88,7 +74,7 @@ public class ProblemRunnerServiceTest {
 		return arr.toArray();
 	}
 	
-	
+	@Ignore
 	@Factory
 	public Object[] cTest(){
 		ArrayList<SingleProblemTestFromResources> arr = new ArrayList<SingleProblemTestFromResources>();
@@ -117,7 +103,7 @@ public class ProblemRunnerServiceTest {
 		return arr.toArray();
 	}
 	
-	
+	@Ignore
 	@Factory
 	public Object[] javaTest(){
 		ArrayList<SingleProblemTestFromResources> arr = new ArrayList<SingleProblemTestFromResources>();
@@ -146,6 +132,6 @@ public class ProblemRunnerServiceTest {
 			
 		return arr.toArray();
 	}
-	
+	*/
 	
 }
