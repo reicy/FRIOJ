@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="18" passed="18">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="210725" started-at="2015-05-10T10:03:58Z" finished-at="2015-05-10T10:07:29Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="210725" started-at="2015-05-10T10:03:58Z" finished-at="2015-05-10T10:07:29Z">
+      <class name="com.TK.frioj.systemServices.SingleProblemTestFromResources">
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@2010ecfa]" name="testSubmission" duration-ms="1959" started-at="2015-05-10T12:03:59Z" finished-at="2015-05-10T12:04:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@2c3edf79]" name="testSubmission" duration-ms="1982" started-at="2015-05-10T12:04:01Z" finished-at="2015-05-10T12:04:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@306369f]" name="testSubmission" duration-ms="1948" started-at="2015-05-10T12:04:03Z" finished-at="2015-05-10T12:04:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@36ee7f4c]" name="testSubmission" duration-ms="62309" started-at="2015-05-10T12:04:05Z" finished-at="2015-05-10T12:05:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@37362188]" name="testSubmission" duration-ms="1942" started-at="2015-05-10T12:05:07Z" finished-at="2015-05-10T12:05:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@42d38409]" name="testSubmission" duration-ms="308" started-at="2015-05-10T12:05:09Z" finished-at="2015-05-10T12:05:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@4ac9b455]" name="testSubmission" duration-ms="2" started-at="2015-05-10T12:05:10Z" finished-at="2015-05-10T12:05:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@4c818d25]" name="testSubmission" duration-ms="1939" started-at="2015-05-10T12:05:10Z" finished-at="2015-05-10T12:05:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@4d599f60]" name="testSubmission" duration-ms="1619" started-at="2015-05-10T12:05:12Z" finished-at="2015-05-10T12:05:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@53c197a0]" name="testSubmission" duration-ms="2057" started-at="2015-05-10T12:05:13Z" finished-at="2015-05-10T12:05:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@5a89484a]" name="testSubmission" duration-ms="62265" started-at="2015-05-10T12:05:15Z" finished-at="2015-05-10T12:06:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@5e5ecf]" name="testSubmission" duration-ms="2" started-at="2015-05-10T12:06:18Z" finished-at="2015-05-10T12:06:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@63e772c0]" name="testSubmission" duration-ms="3023" started-at="2015-05-10T12:06:18Z" finished-at="2015-05-10T12:06:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@6ae920b5]" name="testSubmission" duration-ms="1949" started-at="2015-05-10T12:06:21Z" finished-at="2015-05-10T12:06:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@6f6281e8]" name="testSubmission" duration-ms="62234" started-at="2015-05-10T12:06:23Z" finished-at="2015-05-10T12:07:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@701ece7d]" name="testSubmission" duration-ms="499" started-at="2015-05-10T12:07:25Z" finished-at="2015-05-10T12:07:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@7686aa0c]" name="testSubmission" duration-ms="1931" started-at="2015-05-10T12:07:25Z" finished-at="2015-05-10T12:07:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+        <test-method status="PASS" signature="testSubmission()[pri:0, instance:com.TK.frioj.systemServices.SingleProblemTestFromResources@cec0246]" name="testSubmission" duration-ms="1976" started-at="2015-05-10T12:07:27Z" finished-at="2015-05-10T12:07:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmission -->
+      </class> <!-- com.TK.frioj.systemServices.SingleProblemTestFromResources -->
+      <class name="com.TK.frioj.systemServices.ProblemRunnerServiceTest">
+        <test-method status="PASS" signature="initializeAppContext()[pri:0, instance:com.TK.frioj.systemServices.ProblemRunnerServiceTest@c573aba]" name="initializeAppContext" is-config="true" duration-ms="732" started-at="2015-05-10T12:03:58Z" finished-at="2015-05-10T12:03:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeAppContext -->
+      </class> <!-- com.TK.frioj.systemServices.ProblemRunnerServiceTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

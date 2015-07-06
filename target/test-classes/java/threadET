@@ -1,0 +1,11 @@
+class Main extends Thread {
+
+	public void run() {
+		System.out.println("thread spawned");
+	}
+
+	public static void main(String[] args) {
+		(new Main()).start();
+	}
+
+}

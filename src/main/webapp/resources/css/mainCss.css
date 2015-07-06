@@ -1,0 +1,891 @@
+body {
+	background-size: cover;
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.1) 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0
+		, 0, 0.1)), color-stop(35%, rgba(0, 0, 0, 0)),
+		color-stop(68%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.1)));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.1) 100%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.1) 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000',
+		endColorstr='#1a000000', GradientType=0); /* IE6-9 */
+		
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#main {
+	width: 950px;
+	margin: 0px auto;
+	padding: 5px;
+}
+
+header {
+	background-image: url("logo_fri.png");
+	background-size: 160px 160px;
+	background-repeat: no-repeat;
+	min-height: 120px;
+	min-width: 300px;
+	padding-left: 200px;
+	padding-top: 80px;
+	margin: 0px auto;
+	width: 800px;
+	border-bottom: 1px solid #023402;
+}
+
+#fri {
+	font-size: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #023402;
+	font-weight: 700;
+}
+
+#oj {
+	font-size: 30px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #008500;
+}
+
+#mid {
+	border: 3px solid rgba(0, 0, 0, 0);
+	margin: 0px auto;
+	width: 950px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+#mid:before, #mid:after {
+	content: "";
+	display: table;
+}
+
+#mid:after {
+	clear: both;
+}
+
+#mid {
+	zoom: 1;
+}
+
+#menu {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	width: 172px;
+	position: relative;
+	padding-bottom: 8000px;
+	margin-bottom: -8000px;
+	background: none repeat scroll 0 0 #E0E5E0;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	border-bottom: 2px solid #E0E5E0;
+	background-color: #CBCCCB;
+	display: block;
+	width: 150px;
+	height: 23px;
+	padding: 7px 0 0 21px;
+	border-top: none;
+	text-decoration: none;
+	color: #023402;
+	font-size: 14px;
+	
+}
+
+#menu a:hover {
+	background-color: #023402;
+	color: white;
+}
+
+#menu h2 {
+	height: 35px;
+	width: 201px;
+	padding: 15px 0 0 21px;
+	font-size: 25px;
+	font-weight: normal;
+	color: #023402;
+	margin: 0px;
+}
+
+#webPageContent {
+	float: right;
+	min-width: 500px;
+	width: 750px;
+	margin-bottom: 50px;
+	position: relative;
+}
+
+footer {
+	clear: both;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 1px solid #023402;
+}
+
+footer p {
+	float: right;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #023402;
+}
+
+#gap {
+	margin: 0px;
+	padding: 0px; margin-top 30px;
+	margin-bottom: 60px;
+}
+.gap{
+	margin-bottom: 60px;
+}
+
+#extraGap {
+	margin: 0px;
+	padding: 0px;
+	margin-top: 30px;
+	margin-bottom: 300px;
+}
+
+.singleProblemDiv {
+	margin: 0px;
+	padding: 0px;
+	height: 30px;
+	width: 700px;
+	padding-left: 20px;
+	margin-top: 1px;
+}
+
+.singleProblemDiv:HOVER {
+	background-color: #B0B0B0;
+}
+
+.singleProblemDiv a {
+	display: block;
+	width: 450px;
+	height: 30px;
+	text-decoration: none;
+	color: black;
+	float: left;
+}
+
+.idColumn {
+	margin: 0px;
+	padding: 0px;
+	width: 40px;
+	float: left;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.midFloatDiv {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.singleProblemDivUpdate {
+	margin: 0px;
+	padding: 0px;
+	height: 30px;
+	width: 60px;
+	background-color: #C0C0C0;
+	float: right;
+}
+
+.singleProblemDivUpdate:HOVER {
+	background-color: #949494;
+}
+
+.singleProblemDivUpdate a {
+	display: block;
+	width: 60px;
+	height: 30px;
+	text-decoration: none;
+	color: black;
+	padding-left: 8px;
+}
+
+.green {
+	color: green;
+}
+
+.black {
+	color: black;
+}
+
+.red {
+	color: red !important;
+}
+
+.sessionName {
+	padding-left: 20px;
+	height: 30px;
+	width: 250px;
+}
+
+.sessionDate {
+	width: 350px;
+	height: 30px;
+}
+
+.noDecorations {
+	text-decoration: none;
+}
+
+.noPaddingNorMargin {
+	margin: 0px;
+	padding: 0px;
+}
+
+.divLeft {
+	float: left;
+}
+
+.divRight {
+	float: right;
+}
+
+.grayBack {
+	background-color: #E0E0E0;
+}
+
+.midAllignText {
+	position: relative;
+	top: 70%;
+	transform: translateY(-50%);
+}
+
+.width150 {
+	width: 150px;
+	display: inline-block;
+}
+
+.sessionTable {
+	border: none;
+	table-layout: fixed;
+	width: 750px;
+}
+
+.sessionTable tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.sessionTable tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+.sessionTable td {
+	text-align: center;
+}
+
+.firstRow a {
+	color: inherit;
+}
+
+.victory {
+	color: #006400;
+	background-color: #D4ED91;
+}
+
+.defeat {
+	color: #DC143C;
+	background-color: #ECC3BF;
+}
+
+.sessionUpdate {
+	width: 50px;
+	height: 30px;
+}
+
+.singleSession {
+	margin-top: 0px;
+	padding-top: 20px;
+}
+
+.sessionMidAlignText {
+	position: relative;
+	top: 30%;
+	transform: translateY(20%);
+}
+
+.session>div:HOVER {
+	background-color: #949494;
+}
+
+.sessionUpdateDiv {
+	border-right: 5px;
+	border-right-style: solid;
+	border-color: white;
+}
+
+.loginDiv {
+	border: 1px;
+	border-color: gray;
+	border-style: solid;
+	padding-left: 50px;
+	padding-top: 50px;
+	margin: 50px;
+	width: 300px;
+	height: 200px;
+}
+
+#username {
+	height: 20px;
+}
+
+#password {
+	height: 20px;
+}
+
+.submissionTable {
+	border: none;
+	table-layout: fixed;
+	width: 750px;
+}
+
+.submissionTable tr:nth-child(even) {
+	background-color: #fff;
+}
+
+.submissionTable tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+.submissionTable th {
+	text-align: left;
+	background-color: #d1caca;
+}
+
+.submissionTable a {
+	color: black;
+}
+
+.submissionTable a:HOVER {
+	color: green;
+}
+
+.selectUserName {
+	display: block;
+	padding: 5px;
+	margin: 10px;
+}
+
+div.greyButtonDiv {
+	display: inline-block;
+	background-color: #D0D0D0;
+	width: 70px;
+	text-align: center;
+	margin: 5px;
+	padding: 5px;
+}
+
+div.greyButtonDiv:HOVER {
+	background-color: #949494;
+}
+
+.articleAuthor {
+	margin-top: 50px;
+	text-align: right;
+}
+
+.articleContent {
+	padding-top: 40px;
+}
+
+.articleTitle {
+	padding-top: 60px;
+	font-size: 35px;
+	text-align: center;
+	font-style: oblique;
+	font-weight: bold;
+}
+
+.width200px {
+	min-width: 150px;
+}
+
+.inlineDiv {
+	display: inline-block;
+}
+
+.message {
+	padding-top: 40px;
+	width: 650px;
+	word-wrap: break-word;
+}
+
+.messageText {
+	width: 400px;
+}
+
+.registrationField {
+	height: 50px;
+	width: 400px;
+}
+
+.registrationField input {
+	float: right;
+}
+
+.registrationField>div {
+	color: red;
+	font-size: 70%;
+	width: 400px;
+	padding-top: 5px;
+}
+
+.problemName {
+	padding-top: 60px;
+	padding-bottom: 60px;
+	font-size: 35px;
+	text-align: center;
+	font-style: oblique;
+	font-weight: bold;
+	color: #042104;
+}
+
+.problemInfo span {
+	font-weight: bold;
+	color: #001000;
+}
+
+.problemInfo>div {
+	display: inline-block;
+	min-width: 150px;
+	margin-top: 20px;
+}
+
+.problemDescriptor>h4 {
+	color: #001000;
+}
+
+.problemPdf {
+	margin-top: 40px;
+}
+
+.problemSubmitButton>div {
+	width: 50px;
+	height: 20px;
+	background-color: #E0E0E0;
+	color: black;
+	border-radius: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+
+.problemSubmitButton>div:HOVER {
+	color: white;
+	background-color: #B0B0B0;
+}
+
+.notDisplayed {
+	display: none;
+}
+
+.clickMe {
+	color: #004e01;
+}
+
+.SeniorSubmission {
+	text-align: center;
+}
+
+.submissionDetails {
+	margin-top: 40px;
+}
+
+.submissionDetails>div {
+	display: inline-block;
+	min-width: 150px;
+}
+
+.submissionDetails>div>span {
+	color: #001902;
+	font-weight: bold;
+}
+
+.submissionCode>span {
+	white-space: pre;
+}
+
+.button {
+	
+}
+
+.button>div:HOVER {
+	background-color: #B0B0B0;
+}
+
+.articleField {
+	padding-left: 30px;
+	padding-bottom: 10px;
+}
+
+.articleField>span {
+	color: #001902;
+	font-weight: bold;
+}
+
+#articleHeader {
+	padding-left: 30px;
+}
+
+#articleSubmit {
+	margin-top: 15px;
+	margin-left: 30px;
+}
+
+.homeNewsArticle {
+	margin-top: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #e5e5e5;
+	padding: 5px;
+}
+
+.homeNewsArticleHeader {
+	font-weight: bold;
+	font-size: large;
+	color: #001902;
+}
+
+.homeNewsArticleContent {
+	margin-top: 10px;
+}
+
+.homeNewsArticleFooter {
+	margin-top: 10px;
+	text-align: right;
+}
+
+.homeNewsHeader {
+	color: #001902;
+}
+
+h2 {
+	color: #001902;
+	padding-top: 10px;
+	padding-bottom: 30px;
+}
+
+div.problemRow {
+	text-decoration: none;
+}
+
+a.greyButtonSizeLess {
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	margin: 1px;
+	padding: 7px;
+	color: black;
+	text-decoration: none;
+}
+
+a.greyButtonSizeLess:HOVER {
+	background-color: #949494;
+}
+
+div.greyButtonSizeLess {
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	margin: 1px;
+	padding: 7px;
+	color: black;
+	text-decoration: none;
+}
+
+div.greyButtonSizeLess:HOVER {
+	background-color: #949494;
+}
+
+.problemRowName {
+	width: 650px;
+	text-align: left !important;
+}
+
+.problemRowUpdate {
+	
+}
+
+.problemRowNum {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 20px;
+	min-width: 30px;
+}
+
+.pageNumbers {
+	margin-left: 250px;
+	margin-top: 30px;
+}
+
+.responseMSG {
+	color: red;
+	font-size: large;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.singleSessionName {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 20px;
+	min-width: 300px;
+	text-align: left;
+}
+
+.singleSessionTime {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.singleSessionDate {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.articlePreview {
+	margin-top: 5px;
+}
+
+.articleUpperHalf {
+	background-color: #dbffdb;
+	-webkit-border-top-right-radius: 20px;
+	-moz-border-radius-topright: 20px;
+	border-top-right-radius: 20px;
+	padding: 15px;
+}
+
+.articleLowerHalf {
+	background-color: #e7ffd9;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-bottom-left-radius: 20px;
+	padding: 15px;
+	word-wrap: break-word;
+}
+
+.articleLink {
+	text-decoration: none;
+	color: #001902;
+}
+
+.articleLink>span {
+	text-align: center;
+	font-weight: bold;
+	font-size: large;
+}
+
+.userRoles>div:nth-child(even) {
+	background-color: #eee;
+}
+
+.userRoles>div:nth-child(odd) {
+	background-color: #fff;
+}
+
+.userRoles>div {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.userRoles input[type=submit] {
+	margin-top: 15px;
+}
+
+.preformated {
+	word-wrap: break-word;
+	white-space: pre;
+}
+
+.profileUsernameSearch {
+	margin-top: 30px;
+}
+
+.profile span {
+	color: #001902;
+	font-weight: bold;
+}
+
+.profile>div {
+	margin-top: 10px;
+}
+
+.greyBackground {
+	background-color: #cbc9c9;
+}
+
+.roundedBorders {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.right {
+	float: right;
+}
+
+h4 {
+	color: #001902;
+}
+
+.singleUserStat>div {
+	color: #001902;
+	font-weight: bold;
+	min-width: 250px;
+	display: inline-block;
+}
+
+.profileStats {
+	padding-top: 50px;
+}
+
+.profileUpdate {
+	
+}
+
+.singleProfileUpdateField {
+	margin-bottom: 30px;
+}
+
+.singleProfileUpdateField>div {
+	color: #001902;
+	font-weight: bold;
+	min-width: 750px;
+	display: inline-block;
+}
+
+.noWidth {
+	width: auto !important;
+}
+
+.UDbuttonsArticles {
+	min-height: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.UDbuttonsArticles div {
+	background-color: #d6d6d6;
+}
+
+.UDbuttonsArticles a {
+	background-color: #d6d6d6;
+}
+
+.problemTags>span {
+	font-weight: bold;
+	color: #001902;
+}
+
+.settingsFieldSet {
+	margin-bottom: 10px;
+}
+
+.settingsFieldSet legend {
+	font-weight: bold;
+}
+
+.singleInputOptionDiv {
+	
+}
+
+.singleInputOptionDiv>div {
+	display: inline-block;
+	margin: 5px;
+	min-width: 200px;
+}
+
+#settingsResetToDefaults {
+	margin-top: 80px;
+	background-color: #da0007;
+}
+
+#settingsResetToDefaults:HOVER {
+	background-color: #9e0106;
+}
+
+.addProblemField {
+	padding-left: 30px;
+	padding-bottom: 15px;
+}
+
+.addProblemField>span {
+	color: #001902;
+	font-weight: bold;
+}
+
+#addProblemSubmit {
+	margin-top: 25px;
+	margin-left: 30px;
+}
+
+.centerText {
+	text-align: center;
+}
+
+#addProblemHeader {
+	margin-left: 30px;
+}
+
+.updateSessionField {
+	margin: 5px;
+}
+
+.updateSessionField>div {
+	color: #001902;
+	font-weight: bold;
+	min-width: 80px;
+	display: inline-block;
+}
+
+.updateSessionFieldProblems {
+	margin-left: 5px;
+	margin-top: 50px;
+}
+
+.updateSessionFieldMembers {
+	margin-top: 50px;
+	margin-left: 5px;
+}
+
+#updateSessionSubmit {
+	margin-top: 25px;
+}
+
+.updateSessionFieldLabel {
+	color: #001902;
+	font-weight: bold;
+}

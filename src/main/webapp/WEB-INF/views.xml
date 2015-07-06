@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="DefaultTemplate"
+		template="/WEB-INF/views/templates/basicTemplate.jsp">
+		<put-attribute name="content" value="" />
+	</definition>
+
+	<definition name="blank" template="/WEB-INF/views/blank.jsp">
+	</definition>
+
+	<definition name="submit" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/submit.jsp" />
+		<put-attribute name="title" value="Submit" />
+
+	</definition>
+
+	<definition name="home" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/home.jsp" />
+		<put-attribute name="title" value="FriOJ" />
+	</definition>
+
+	<definition name="login" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="title" value="Login" />
+	</definition>
+
+	<definition name="error" template="/WEB-INF/views/err.jsp" />
+
+	<definition name="addProblemForm" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/addProblemForm.jsp" />
+		<put-attribute name="title" value="Add problem" />
+	</definition>
+
+	<definition name="updateProblemForm" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/updateProblemForm.jsp" />
+		<put-attribute name="title" value="Update problem" />
+	</definition>
+
+	<definition name="problem" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/problem.jsp" />
+		<put-attribute name="title" value="Problem" />
+	</definition>
+
+	<definition name="displayAllProblems" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/displayAllProblems.jsp" />
+		<put-attribute name="title" value="All problems" />
+	</definition>
+
+	<definition name="displayAllSubmissions" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/displayAllSubmissions.jsp" />
+		<put-attribute name="title" value="All submissions" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string"
+				value="/resources/js/displayAllSubmissions.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="addSessionForm" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/addSessionForm.jsp" />
+		<put-attribute name="title" value="Add session" />
+	</definition>
+
+	<definition name="displayAllSessions" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/displayAllSessions.jsp" />
+		<put-attribute name="title" value="All sessions" />
+	</definition>
+
+	<definition name="updateSessionForm" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/updateSessionForm.jsp" />
+		<put-attribute name="title" value="Update session" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string" value="/resources/js/updateSession.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="session" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/session.jsp" />
+		<put-attribute name="title" value="Session" />
+	</definition>
+
+	<definition name="displayAllArticles" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/displayAllArticles.jsp" />
+		<put-attribute name="title" value="All articles" />
+	</definition>
+
+	<definition name="articleForm" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/articleForm.jsp" />
+		<put-attribute name="title" value="Article form" />
+	</definition>
+
+	<definition name="article" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/article.jsp" />
+		<put-attribute name="title" value="Article" />
+	</definition>
+
+	<definition name="links" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/links.jsp" />
+		<put-attribute name="title" value="Links" />
+	</definition>
+
+	<definition name="updateUserRolesAndStatusesForm" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/updateUserRolesAndStatusesForm.jsp" />
+		<put-attribute name="title" value="Update roles and statuses" />
+	</definition>
+
+	<definition name="profile" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/profile.jsp" />
+		<put-attribute name="title" value="Profile" />
+	</definition>
+
+	<definition name="updateProfileForm" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/updateProfileForm.jsp" />
+		<put-attribute name="title" value="Update profile" />
+	</definition>
+
+	<definition name="shoutbox" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/shoutbox.jsp" />
+		<put-attribute name="title" value="Shoutbox" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string" value="/resources/js/shoutbox.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="registration" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/registration.jsp" />
+		<put-attribute name="title" value="Registration" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string" value="/resources/js/registration.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="rankList" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/rankList.jsp" />
+		<put-attribute name="title" value="Ranklist" />
+	</definition>
+
+	<definition name="searchProblem" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/searchProblem.jsp" />
+		<put-attribute name="title" value="Search" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string" value="/resources/js/searchProblem.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="submission" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/submission.jsp" />
+		<put-attribute name="title" value="Submission" />
+	</definition>
+
+	<definition name="settings" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/settings.jsp" />
+		<put-attribute name="title" value="Settings" />
+		<put-list-attribute name="javascripts">
+			<add-attribute type="string" value="/resources/js/settings.js"></add-attribute>
+		</put-list-attribute>
+	</definition>
+
+	<definition name="contactMe" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/contactMe.jsp" />
+		<put-attribute name="title" value="Contact me" />
+	</definition>
+
+	<definition name="updatePasswordForm" extends="DefaultTemplate">
+		<put-attribute name="content"
+			value="/WEB-INF/views/updatePasswordForm.jsp" />
+		<put-attribute name="title" value="Update password" />
+	</definition>
+
+</tiles-definitions>

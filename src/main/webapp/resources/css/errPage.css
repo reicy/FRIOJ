@@ -1,0 +1,26 @@
+#errorPageContent{
+	width: 50%;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+h1{
+	color: #123414;
+	text-align: center;
+}
+
+p{
+	margin-top: 100px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#errorPageContent>div{
+	text-align: center;
+}
+
+
+#content{
+	width: 100%;	
+	
+}

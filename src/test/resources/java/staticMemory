@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+	private static long array1[] = new long[1000000000];
+	private static long array2[] = new long[1000000000];
+	private static long array3[] = new long[1000000000];
+	private static long array4[] = new long[1000000000];
+	private static long array5[] = new long[1000000000];
+	private static long array6[] = new long[1000000000];
+	private static long array7[] = new long[1000000000];
+
+	public static void main(String[] args) throws Exception {
+		
+		while(true);
+	}
+	
+}
