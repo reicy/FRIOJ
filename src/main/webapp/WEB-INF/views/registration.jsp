@@ -42,10 +42,27 @@ pageEncoding="UTF-8"%>
 	       <form:input path="email" value="" />
 	       <form:errors path="email" element="div" />
 	   </div>
-	    
+	   
+	   <div class = "registrationField"> 
+	       <label>Name</label>
+	       <form:input path="name" value="" />
+	       <form:errors path="name" element="div" />
+	   </div>
+	   
+	   <div class = "registrationField"> 
+	       <label>Surname</label>
+	       <form:input path="surname" value="" />
+	       <form:errors path="surname" element="div" />
+	   </div>
+	   
+	   
+	   <div class="g-recaptcha " data-sitekey="6LeD0hgTAAAAAIIC4_h7bDjTD04zkjRvkuS48F12"></div>
+	   <br/>
 	   <div class = "registrationField">   
 	       <input type = "submit" value = "submit" id="submit" />
 	   </div>
+	   
+	   
 	    </form:form>
     
 </div>

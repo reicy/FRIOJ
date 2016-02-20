@@ -34,5 +34,7 @@ public interface UserDao {
 	String getPassword(String userName);
 
 	void updatePassword(String userName, String newPassword);
+
+	int existEmail(String email);
 	
 }

@@ -16,11 +16,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import com.TK.frioj.dao.ArticleDao;
 import com.TK.frioj.dao.ProblemDao;
@@ -50,8 +53,7 @@ import com.TK.frioj.services.UserStatisticsService;
 @Controller
 public class CommonController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(CommonController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 
 	@Autowired
 	private ProblemDao problemDao;
@@ -96,30 +98,25 @@ public class CommonController {
 	private SubmissionService submissionService;
 
 	@RequestMapping("/displayAllSubmissions")
-	public String displayAllSubmissions(
-			@RequestParam(defaultValue = "1") int page, Model model) {
-		int userId = userDao
-				.getUserId(AuthorizationHelper.getCurrentUserName());
-		ArrayList<Submission> submissionList = new ArrayList<Submission>(
-				submissionDao.getAllUserSubmissions(userId));
+	public String displayAllSubmissions(@RequestParam(defaultValue = "1") int page, Model model) {
+		int userId = userDao.getUserId(AuthorizationHelper.getCurrentUserName());
+		ArrayList<Submission> submissionList = new ArrayList<Submission>(submissionDao.getAllUserSubmissions(userId));
 		ArrayList<Submission> temp = new ArrayList<Submission>(40);
 
 		for (Submission sub : submissionList) {
-			if ((sub.getStatus() == SubmissionStatus.WA && StringHelper
-					.isWaDueToDifferentSize(sub))
-					|| sub.getStatus() == SubmissionStatus.RTE
-					|| sub.getStatus() == SubmissionStatus.CE) {
+			if ((sub.getStatus() == SubmissionStatus.WA && StringHelper.isWaDueToDifferentSize(sub))
+					|| sub.getStatus() == SubmissionStatus.RTE || sub.getStatus() == SubmissionStatus.CE) {
 			} else {
 				sub.setErr("");
 			}
-			if(sub.getErr().startsWith("SYSCALL")){
-				if(sub.getErr().startsWith("SYSCALL -1")){
+			if (sub.getErr().startsWith("SYSCALL")) {
+				if (sub.getErr().startsWith("SYSCALL -1")) {
 					sub.setErr("");
-				}else{
+				} else {
 					sub.setErr("forbidden syscall, please contact administrator");
 				}
 			}
-			if(sub.getErr().contains("java.security")){
+			if (sub.getErr().contains("java.security")) {
 				sub.setErr("forbidden operation, please contact administrator");
 			}
 		}
@@ -132,16 +129,14 @@ public class CommonController {
 			page = 1;
 		}
 
-		for (int i = (page - 1) * maxSubsPerPage; i < Math.min(page
-				* maxSubsPerPage, submissionList.size()); i++) {
+		for (int i = (page - 1) * maxSubsPerPage; i < Math.min(page * maxSubsPerPage, submissionList.size()); i++) {
 			temp.add(submissionList.get(i));
 		}
 		submissionList = temp;
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pages", maxPageNum);
-		model.addAttribute("isJuniorPlusEnabled",
-				settingsDao.isJuniorPlusEnabled());
+		model.addAttribute("isJuniorPlusEnabled", settingsDao.isJuniorPlusEnabled());
 		model.addAttribute("submissionList", submissionList);
 		return "displayAllSubmissions";
 	}
@@ -155,9 +150,7 @@ public class CommonController {
 		} else {
 			if (AuthorizationHelper.isJuniorOrSenior()) {
 				sessionList = new ArrayList<Session>(
-						sessionDao.getAllUserSessions(userDao
-								.getUserId(AuthorizationHelper
-										.getCurrentUserName())));
+						sessionDao.getAllUserSessions(userDao.getUserId(AuthorizationHelper.getCurrentUserName())));
 
 			} else {
 				return "redirect:/";
@@ -169,8 +162,7 @@ public class CommonController {
 	}
 
 	@RequestMapping("/session/{sessionId}")
-	public String session(@PathVariable int sessionId, Model model,
-			Principal principal) {
+	public String session(@PathVariable int sessionId, Model model, Principal principal) {
 
 		if (AuthorizationHelper.isNotLogged())
 			return "redirect:/";
@@ -189,11 +181,10 @@ public class CommonController {
 		} else {
 			sessionMembersNames = new ArrayList<String>();
 		}
-		ArrayList<Submission> sesSubs = new ArrayList<Submission>(
-				submissionDao.getAllSessionSubmissions(session));
+		ArrayList<Submission> sesSubs = new ArrayList<Submission>(submissionDao.getAllSessionSubmissions(session));
 
-		int acToAllTAble[][][] = SessionHelper.submissionsToAcToAllTable(
-				sesSubs, session.getMembers(), session.getProblems(),settingsDao.getPenalization(), session, sessionMembersNames);
+		int acToAllTAble[][][] = SessionHelper.submissionsToAcToAllTable(sesSubs, session.getMembers(),
+				session.getProblems(), settingsDao.getPenalization(), session, sessionMembersNames);
 		model.addAttribute("acToAllTable", acToAllTAble);
 
 		model.addAttribute("sessionMembersNames", sessionMembersNames);
@@ -204,8 +195,7 @@ public class CommonController {
 			return "session";
 		}
 
-		List<Integer> userSessionsIds = sessionDao.getAllUserSesionsIds(userDao
-				.getUserId(principal.getName()));
+		List<Integer> userSessionsIds = sessionDao.getAllUserSesionsIds(userDao.getUserId(principal.getName()));
 		if (!userSessionsIds.contains(sessionId))
 			return "redirect:/";
 
@@ -220,14 +210,10 @@ public class CommonController {
 		return "links";
 	}
 
-	
 	@RequestMapping("/profile")
-	public String profile(
-			@RequestParam(value = "name", defaultValue = "") String name,
-			Model model) {
+	public String profile(@RequestParam(value = "name", defaultValue = "") String name, Model model) {
 
-		Roles roleOfViewer = userDao.getUserRole(AuthorizationHelper
-				.getCurrentUserName());
+		Roles roleOfViewer = userDao.getUserRole(AuthorizationHelper.getCurrentUserName());
 
 		if (name.equals("")) {
 			name = AuthorizationHelper.getCurrentUserName();
@@ -244,8 +230,7 @@ public class CommonController {
 		try {
 			user = userDao.getUser(name);
 			solvedProblems = StringHelper.addCommaDelim(new ArrayList<Integer>(
-					submissionDao.getAllUserSubmissionNumbersOfStatus(
-							user.getUserId(), SubmissionStatus.AC)));
+					submissionDao.getAllUserSubmissionNumbersOfStatus(user.getUserId(), SubmissionStatus.AC)));
 			if (solvedProblems.equals("-1"))
 				solvedProblems = "";
 		} catch (EmptyResultDataAccessException ex) {
@@ -253,8 +238,7 @@ public class CommonController {
 		}
 
 		if ((roleOfViewer == Roles.Junior || roleOfViewer == Roles.Senior)
-				&& (user.getRole().equals(Roles.Teacher) || user.getRole()
-						.equals(Roles.Admin))) {
+				&& (user.getRole().equals(Roles.Teacher) || user.getRole().equals(Roles.Admin))) {
 			return "redirect:/";
 		}
 
@@ -263,8 +247,7 @@ public class CommonController {
 		} else {
 			model.addAttribute("role", user.getRole().toString());
 		}
-		model.addAttribute("userStatistics", userStatisticsService
-				.getUserStatistics(userDao.getUserId(name)));
+		model.addAttribute("userStatistics", userStatisticsService.getUserStatistics(userDao.getUserId(name)));
 		model.addAttribute("solvedProblems", solvedProblems);
 		model.addAttribute("user", user);
 
@@ -274,16 +257,13 @@ public class CommonController {
 	@RequestMapping("/updateProfileForm")
 	public String updateProfileForm(Model model) {
 
-		model.addAttribute("user",
-				userDao.getUser(AuthorizationHelper.getCurrentUserName()));
+		model.addAttribute("user", userDao.getUser(AuthorizationHelper.getCurrentUserName()));
 		return "updateProfileForm";
 	}
 
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
-	public String updateProfile(
-			@RequestParam(defaultValue = "") String userName,
-			@RequestParam(defaultValue = "") String email,
-			@RequestParam(defaultValue = "") String info, Model model) {
+	public String updateProfile(@RequestParam(defaultValue = "") String userName,
+			@RequestParam(defaultValue = "") String email, @RequestParam(defaultValue = "") String info, Model model) {
 
 		User user = userDao.getUser(AuthorizationHelper.getCurrentUserName());
 		user.setUserName(userName);
@@ -307,26 +287,46 @@ public class CommonController {
 
 	@RequestMapping(value = "/registration")
 	public String registration(@Valid UserRegistrationDTO user,
-			BindingResult result, Model model) {
-
+			BindingResult result, @RequestParam(value = "g-recaptcha-response")String rcResponse, Model model) {
+		
+		;
 		if (result.hasErrors()) {
 
 			model.addAttribute("userRegistrationDTO", user);
 			return "registration";
 		} else {
+			
+			String RECAPTCHA_VERIF_URL = "https://www.google.com/recaptcha/api/siteverify";
+			MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+	        map.add("secret", "6LeD0hgTAAAAAGrTgKbRDrngurNpQi4zbeQE803r");
+	        map.add("response", rcResponse);
+	 
+	        RestTemplate restTemplate = new RestTemplate();
+	 
+	        String s = restTemplate.postForObject(RECAPTCHA_VERIF_URL, map, String.class);
+	        logger.info(s);
+	        if(!s.contains("\"success\": true"))return "registration";
+			
+			
 			if (userDao.existUser(user.getLogin()) == 1) {
 				model.addAttribute("message",
 						"User already exists, please choose another login.");
 			} else {
-
+				
+				if (userDao.existEmail(user.getEmail()) >= 1) {
+					model.addAttribute("message", "Email already in use, please enter another email.");
+				}else{
 				User newUser = new User(user.getLogin(), user.getLogin(),
 						user.getEmail(), "", passwordEncoder.encode(user
 								.getPassword()));
+				newUser.setName(user.getName());
+				newUser.setSurname(user.getSurname());
 				userDao.addUser(newUser);
 				model.addAttribute("message", "successful registration");
 				model.addAttribute("userRegistrationDTO",
 						new UserRegistrationDTO());
 				return "registration";
+			}
 			}
 		}
 
@@ -335,8 +335,7 @@ public class CommonController {
 	}
 
 	@RequestMapping(value = "/rankList")
-	public String rankList(@RequestParam(defaultValue = "20") int topN,
-			Model model) {
+	public String rankList(@RequestParam(defaultValue = "20") int topN, Model model) {
 
 		if (topN < 1 || topN > 100)
 			topN = 20;
@@ -364,8 +363,7 @@ public class CommonController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/sendMsg")
-	public String sendMsg(@RequestParam(defaultValue = "") String content,
-			Model model) {
+	public String sendMsg(@RequestParam(defaultValue = "") String content, Model model) {
 		if (!content.equals("")) {
 			if (content.length() > 2000) {
 				mailService.sendMailToAdmin(content.substring(0, 1999));
@@ -381,13 +379,11 @@ public class CommonController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/updatePassword")
-	public String updatePassword(
-			@RequestParam(defaultValue = "") String currentPass,
-			@RequestParam(defaultValue = "") String newPass1,
-			@RequestParam(defaultValue = "") String newPass2, Model model) {
+	public String updatePassword(@RequestParam(defaultValue = "") String currentPass,
+			@RequestParam(defaultValue = "") String newPass1, @RequestParam(defaultValue = "") String newPass2,
+			Model model) {
 
-		String response = userService.updatePassword(currentPass, newPass1,
-				newPass2);
+		String response = userService.updatePassword(currentPass, newPass1, newPass2);
 		model.addAttribute("response", response);
 
 		return "updatePasswordForm";
@@ -400,12 +396,9 @@ public class CommonController {
 	}
 
 	@RequestMapping("/error")
-	public String customError(HttpServletRequest request,
-			HttpServletResponse response, Model model) {
-		Integer statusCode = (Integer) request
-				.getAttribute("javax.servlet.error.status_code");
-		Throwable throwable = (Throwable) request
-				.getAttribute("javax.servlet.error.exception");
+	public String customError(HttpServletRequest request, HttpServletResponse response, Model model) {
+		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
 
 		if (throwable != null) {
 			throwable.printStackTrace();
@@ -417,7 +410,8 @@ public class CommonController {
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		model.addAttribute("content",HomePageHelper.getHomePageContent(settingsDao.getFriojFilesLocation()+"homePage.txt"));
+		model.addAttribute("content",
+				HomePageHelper.getHomePageContent(settingsDao.getFriojFilesLocation() + "homePage.txt"));
 		return "home";
 	}
 
@@ -427,15 +421,13 @@ public class CommonController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/submit")
-	public String submit(@RequestParam(defaultValue = "") String problemId,
-			Model model) {
+	public String submit(@RequestParam(defaultValue = "") String problemId, Model model) {
 		model.addAttribute("problemId", problemId);
 		return "submit";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/submitProblem")
-	public String submitProblem(
-			@RequestParam(value = "problemId", required = false) String id,
+	public String submitProblem(@RequestParam(value = "problemId", required = false) String id,
 			@RequestParam(value = "code", required = false) String sourceCode,
 			@RequestParam(value = "lang") Languages lang, Model model) {
 
@@ -446,6 +438,5 @@ public class CommonController {
 
 		return "submit";
 	}
-
 
 }

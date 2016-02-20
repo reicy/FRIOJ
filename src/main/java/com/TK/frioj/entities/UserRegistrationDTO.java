@@ -17,6 +17,12 @@ public class UserRegistrationDTO {
 	@Pattern(regexp="^[a-zA-Z0-9]+$", message="Password must be alphanumeric")
 	private String password;
 	
+	@NotNull(message="Enter name.")
+	private String name;
+	
+	@NotNull(message="Enter surname.")
+	private String surname;
+	
 	@NotNull
 	@Size(min=0, max=30, message="Email must be at most 30 characters long.")
 	@Pattern(regexp="[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}",message="Invalid email address.")
@@ -46,6 +52,22 @@ public class UserRegistrationDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	
 	

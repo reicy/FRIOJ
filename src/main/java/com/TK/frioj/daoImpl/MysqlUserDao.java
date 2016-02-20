@@ -100,14 +100,16 @@ public class MysqlUserDao implements UserDao {
 
 	@Override
 	public void addUser(User user) {
-		String sql = "INSERT INTO `User`(`Login`, `Password`, `UserName`, `Email`, `Info`) "
-				+ "VALUES ( :login , :password , :userName , :email , :info)";
+		String sql = "INSERT INTO `User`(`Login`, `Password`, `UserName`, `Email`, `Info`, `Name`, `Surname`) "
+				+ "VALUES ( :login , :password , :userName , :email , :info, :name, :surname)";
 		MapSqlParameterSource params = new MapSqlParameterSource()
 				.addValue("login", user.getLogin())
 				.addValue("password", user.getPassword())
 				.addValue("userName", user.getUserName())
 				.addValue("email", user.getEmail())
-				.addValue("info", user.getInfo());
+				.addValue("info", user.getInfo())
+				.addValue("name", user.getName())
+				.addValue("surname", user.getSurname());
 		jdbcTemplate.update(sql, params);
 
 	}
@@ -187,6 +189,16 @@ public class MysqlUserDao implements UserDao {
 		MapSqlParameterSource params = new MapSqlParameterSource().addValue(
 				"userName", userName).addValue("pass", newPassword);
 		jdbcTemplate.update(sql, params);
+	}
+
+	@Override
+	public int existEmail(String email) {
+		String sql = "SELECT count(*) FROM `User` WHERE `Email`= :email";
+
+		MapSqlParameterSource params = new MapSqlParameterSource().addValue(
+				"email", email);
+
+		return jdbcTemplate.queryForObject(sql, params, Integer.class);
 	}
 
 }
