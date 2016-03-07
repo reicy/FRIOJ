@@ -7,13 +7,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+    	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" content="text/html;charset=UTF-8">
+    	
+    
         <link href="<c:url value="/resources/css/mainCss.css" />" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/mainJs.js" />"> </script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
         
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- code highlight -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+		
+        
+        
 		
 		<tiles1:useAttribute name="javascripts" id="javascripts" ignore="true" />
 		
@@ -74,9 +81,11 @@
                     
                     <security:authorize access="hasAnyRole('Admin,Teacher')">
                     	<li><a href="/frioj/admin/addProblemForm">Add problem</a></li>
+                    	<li><a href="/frioj/admin/addProblemInOutForm">Problem in out</a></li> 
                     	<li><a href="/frioj/admin/addArticleForm">Add article</a></li>
                     	<li><a href="/frioj/admin/submission">Display submission</a></li>
                     	<li><a href="/frioj/admin/settings/">Settings</a></li>
+                    	
                    
                     </security:authorize>
                     

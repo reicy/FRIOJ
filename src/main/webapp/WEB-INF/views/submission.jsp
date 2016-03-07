@@ -51,11 +51,17 @@ pageEncoding="UTF-8"%>
 	
 	<div class="submissionCode">
 		<h4>Code</h4>
-		<span >
-<c:out value="${submission.sourceCode }"></c:out>
-		</span>
+		<pre>
+			<code>
+				<span >
+					<c:out value="${submission.sourceCode }"></c:out>
+				</span>
+			</code>
+		</pre>
 	
 	</div>
+	
+	<script>hljs.initHighlightingOnLoad();</script>
 
 </c:if>
 

@@ -2,6 +2,8 @@ var $currentNumOfUserSelects = 0;
 var $userNames;
 var $currentNumOfProblemSelects = 0;
 var $problemNames;
+var $ajaxReqCounter = 0;
+var $response;
 
 $(document).ready(
 		function() {
@@ -12,27 +14,10 @@ $(document).ready(
 				data : "",
 				success : function(response) {
 
-					var json = JSON.parse(response);
-					var start = new Date(json.start);
-					start.setMilliseconds(start.getMilliseconds() + 2*3600000);
-					var end = new Date(json.end);
-					end.setMilliseconds(start.getMilliseconds() + 2*3600000);
-					var userNames = json.userNames;
-					var problemNames = json.problemNames;
-
-					document.getElementById("start").value = start
-							.toISOString().substring(0, 19);// "2014-11-16T15:25:33";//start.toISOString();
-					document.getElementById("end").value = end.toISOString()
-							.substring(0, 19);// "2014-11-16T15:25:33";//start.toISOString();
-
-					updateTotalTime();
-
-					$(userNames).each(function() {
-						addUserSelect(this);
-					});
-					$(problemNames).each(function() {
-						addProblemSelect(this);
-					});
+					
+					$response = response;
+					
+					generateSessionContent();
 
 				},
 				error : function(e) {
@@ -47,7 +32,7 @@ $(document).ready(
 				data : "",
 				success : function(response) {
 					$userNames = JSON.parse(response);
-
+					generateSessionContent();
 				},
 				error : function(e) {
 					alert('Error: ' + e);
@@ -62,6 +47,7 @@ $(document).ready(
 				data : "",
 				success : function(response) {
 					$problemNames = JSON.parse(response);
+					generateSessionContent();
 				},
 				error : function(e) {
 					alert('Error: ' + e);
@@ -226,4 +212,41 @@ function updateEndTime() {
 	var $end = new Date($start.getTime() + $diff.getTime());
 	document.getElementById("end").value = $end.toISOString().substring(0, 19);// "2014-11-16T15:25:33";//start.toISOString();
 
+}
+
+function generateSessionContent(){
+	
+	$ajaxReqCounter++;
+	//console.log($ajaxReqCounter);
+	
+	if($ajaxReqCounter >=3 ){
+		
+		var json = JSON.parse($response);
+		var start = new Date(json.start);
+		start.setMilliseconds(start.getMilliseconds() + 2*3600000);
+		var end = new Date(json.end);
+		end.setMilliseconds(start.getMilliseconds() + 2*3600000);
+		
+		
+		var userNames = json.userNames;
+		var problemNames = json.problemNames;
+
+		//document.getElementById("start").value = start;
+				//.toISOString().substring(0, 19);// "2014-11-16T15:25:33";//start.toISOString();
+		//document.getElementById("end").value = end;
+		//.toISOString().substring(0, 19);// "2014-11-16T15:25:33";//start.toISOString();
+
+		updateTotalTime();
+
+		$(userNames).each(function() {
+			addUserSelect(this);
+		});
+		$(problemNames).each(function() {
+			addProblemSelect(this);
+		});
+		
+		
+	}
+	
+	
 }

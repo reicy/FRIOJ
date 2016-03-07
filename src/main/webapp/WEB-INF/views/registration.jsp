@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 </div>
 
 <div class="registrationForm">
-	<form:form modelAttribute="userRegistrationDTO" action = "/frioj/registration" method="POST">
+	<form:form modelAttribute="userRegistrationDTO" action = "/frioj/registration" method="POST" accept-charset="utf-8">
 		
 		<div class = "registrationField">
 		

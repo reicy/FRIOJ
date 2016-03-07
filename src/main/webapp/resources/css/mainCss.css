@@ -300,6 +300,10 @@ footer p {
 
 .sessionTable td {
 	text-align: center;
+	
+}
+.sessionTable th {
+	word-wrap: break-word;	
 }
 
 .firstRow a {
@@ -427,6 +431,16 @@ div.greyButtonDiv:HOVER {
 .width200px {
 	min-width: 150px;
 }
+
+.width130px {
+	
+	width: 130px;
+}
+
+.wrapped{
+	word-wrap: break-word;
+}
+
 
 .inlineDiv {
 	display: inline-block;

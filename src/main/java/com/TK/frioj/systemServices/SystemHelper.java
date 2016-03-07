@@ -1,6 +1,7 @@
 package com.TK.frioj.systemServices;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
@@ -44,6 +45,20 @@ public class SystemHelper {
 		PrintWriter out = new PrintWriter(file);
 		out.print(content);
 		out.close();
+	}
+	
+	public void createFile(String name, String location, byte[] content) throws IOException {
+		File file = new File(location+name);
+		file.createNewFile();
+		file.setReadable(true);
+		file.setWritable(true);
+		FileOutputStream out = new FileOutputStream(file);
+		out.write(content);
+		out.close();
+		file.setReadable(true, false);
+		file.setWritable(true, false);
+		file.setExecutable(true, false);
+		
 	}
 
 	public void copyFile(String subor,String newName, String source, String destination) throws IOException, InterruptedException {

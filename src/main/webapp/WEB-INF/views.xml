@@ -178,5 +178,10 @@
 			value="/WEB-INF/views/updatePasswordForm.jsp" />
 		<put-attribute name="title" value="Update password" />
 	</definition>
+	
+	<definition name="inoutUpLoad" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/inoutUpLoad.jsp" />
+		<put-attribute name="title" value="InOutUpLoad" />
+	</definition>
 
 </tiles-definitions>

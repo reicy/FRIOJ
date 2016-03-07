@@ -132,14 +132,14 @@ public class MysqlUserDao implements UserDao {
 
 	@Override
 	public User getUser(int userId) {
-		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Enabled` FROM `User` WHERE `UserId` = :userId";
+		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Enabled`,`Name`, `Surname`  FROM `User` WHERE `UserId` = :userId";
 		MapSqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
 		return jdbcTemplate.queryForObject(sql, params, userRowMapper);
 	}
 
 	@Override
 	public User getUser(String name) {
-		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Enabled` FROM `User` WHERE `Login` = :name";
+		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Enabled`,`Name`, `Surname`  FROM `User` WHERE `Login` = :name";
 		MapSqlParameterSource params = new MapSqlParameterSource().addValue("name", name);
 		return jdbcTemplate.queryForObject(sql, params, userRowMapper);
 	}
@@ -166,9 +166,10 @@ public class MysqlUserDao implements UserDao {
 
 	@Override
 	public List<User> getAllUsersRolesAndStatusesExcept0() {
-		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Enabled` FROM `User` WHERE `UserId` != 0";
+		String sql = "SELECT `UserId`, `Login`, `UserName`, `Authorization`, `Email`, `Info`, `Name`, `Surname`, `Enabled` FROM `User` WHERE `UserId` != 0";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		return jdbcTemplate.query(sql, params, userRowMapper);
+		
 	}
 
 	@Override

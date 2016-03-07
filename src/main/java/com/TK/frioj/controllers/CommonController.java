@@ -1,5 +1,6 @@
 package com.TK.frioj.controllers;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -268,12 +269,16 @@ public class CommonController {
 		User user = userDao.getUser(AuthorizationHelper.getCurrentUserName());
 		user.setUserName(userName);
 		user.setEmail(email);
+		
+	
 
 		if (info.length() > 1500) {
 			user.setInfo(info.substring(0, 1500));
 		} else {
 			user.setInfo(info);
 		}
+		
+		
 		userDao.updateUser(user);
 		return "redirect:/profile";
 	}
@@ -289,7 +294,10 @@ public class CommonController {
 	public String registration(@Valid UserRegistrationDTO user,
 			BindingResult result, @RequestParam(value = "g-recaptcha-response")String rcResponse, Model model) {
 		
-		;
+		
+		
+		
+		
 		if (result.hasErrors()) {
 
 			model.addAttribute("userRegistrationDTO", user);
@@ -304,7 +312,7 @@ public class CommonController {
 	        RestTemplate restTemplate = new RestTemplate();
 	 
 	        String s = restTemplate.postForObject(RECAPTCHA_VERIF_URL, map, String.class);
-	        logger.info(s);
+	        
 	        if(!s.contains("\"success\": true"))return "registration";
 			
 			

@@ -17,12 +17,17 @@ pageEncoding="UTF-8"%>
 		
 			<div class="singleUserRole">
 			
-				<div class="inlineDiv width200px ">
+				<div class="inlineDiv width130px ">
 					<c:out value="${user.login}"/>
 				</div>
 				
-				<div class="inlineDiv width200px ">
-					<c:out value="${user.userName}"/>
+				
+				<div class="inlineDiv width130px ">
+					<c:out value="${user.name}"/>
+				</div>
+				
+				<div class="inlineDiv width130px ">
+					<c:out value="${user.surname}"/>
 				</div>
 				
 				<div class="inlineDiv">

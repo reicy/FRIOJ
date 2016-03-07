@@ -37,6 +37,7 @@ import com.TK.frioj.entities.User;
 import com.TK.frioj.enums.ProblemStatus;
 import com.TK.frioj.enums.Roles;
 import com.TK.frioj.helpers.AuthorizationHelper;
+import com.TK.frioj.systemServices.SystemHelper;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,6 +63,9 @@ public class AdminController {
 
 	@Autowired
 	private SettingsDao settingsDao;
+	
+	@Autowired
+	private SystemHelper systemHelper;
 
 	@RequestMapping("/addProblemForm")
 	public String addProblemForm(Model model) {
@@ -69,6 +73,56 @@ public class AdminController {
 		model.addAttribute("PageTitle", "addProblem");
 		return "addProblemForm";
 	}
+	
+	
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/addProblemInOutForm")
+	public String addProblemInOutForm(Model model){
+		
+		return "inoutUpLoad";
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/addProblemInOut")
+	public String addProblemInOut(
+			@RequestParam(value = "problemId", defaultValue = "-1") int problemId,
+			@RequestParam(value = "inFile", required = false) MultipartFile inFile,
+			@RequestParam(value = "outFile", required = false) MultipartFile outFile, Model model){
+		
+		if(problemId < 0){
+			model.addAttribute("msg","Problem id not entered.");
+			return "inoutUpLoad";
+		}
+		
+		byte[] file = null;
+
+		if (!inFile.isEmpty()) {
+			try {
+				file = inFile.getBytes();
+				
+				systemHelper.createFile(problemId+".in", settingsDao.getInLocation(), file);
+
+			} catch (Exception e) {
+				file = null;
+			}
+		}
+		
+		if (!outFile.isEmpty()) {
+			try {
+				file = outFile.getBytes();
+				systemHelper.createFile(problemId+".out", settingsDao.getOutLocation(), file);
+
+			} catch (Exception e) {
+				file = null;
+			}
+		}
+		
+		
+		
+		return "redirect:addProblemInOutForm";
+	}
+			
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addProblem")
 	public String addProblem(
@@ -137,7 +191,7 @@ public class AdminController {
 			@RequestParam(value = "maxInputFileSize", defaultValue = "0") int maxInputFileSize,
 			Model model) {
 
-		try {
+		/*try {
 			name = (new String(name.getBytes("iso-8859-1"), "UTF-8"));
 			text = (new String(text.getBytes("iso-8859-1"), "UTF-8"));
 			input = (new String(input.getBytes("iso-8859-1"), "UTF-8"));
@@ -145,7 +199,7 @@ public class AdminController {
 		} catch (UnsupportedEncodingException e1) {
 
 			e1.printStackTrace();
-		}
+		}*/
 
 		int setterId = userDao.getUserId(SecurityContextHolder.getContext()
 				.getAuthentication().getName());
@@ -296,6 +350,8 @@ public class AdminController {
 			@RequestParam("end") String end,
 			@RequestParam Map<String, String> allRequestParams, Model model) {
 
+		
+		
 		Session session = new Session(sessionId, name, DateTime.parse(start),
 				DateTime.parse(end));
 

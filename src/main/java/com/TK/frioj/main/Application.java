@@ -54,10 +54,23 @@ public class Application {
 		
 		datasource.setDriverClassName("com.mysql.jdbc.Driver");
 		datasource.setUrl(jdbcUrl);
+		
+		datasource.setConnectionProperties("useUnicode=true;characterEncoding=UTF-8;");
 		datasource.setPassword(jdbcPassword);
 		datasource.setUsername(jdbcUsername);
 		datasource.setInitialSize(100);
 		datasource.setMaxActive(400);
+		
+		
+		//TODO test
+		datasource.setTimeBetweenEvictionRunsMillis(180000);
+		datasource.setMinEvictableIdleTimeMillis(240000);
+		datasource.setValidationQuery("select 1");
+		datasource.setTestOnBorrow(true);
+		datasource.setValidationQueryTimeout(120000);
+		datasource.setRemoveAbandoned(true);
+		datasource.setRemoveAbandonedTimeout(240);
+				
 		
 		return datasource;
 	}

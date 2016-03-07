@@ -21,21 +21,36 @@ pageEncoding="UTF-8"%>
 		<form:input type="text" path="name" />
 	</div>
 	
+	<!-- 
+	
 	<div class="updateSessionField">
 		<div >start</div>
 		<form:input type="datetime-local" step="1" id="start" path="start"/>
-		<!-- 
-		<form:input type="text" path="start" />
-		 -->
+		
 	</div>
 	
 	<div class="updateSessionField">
 		<div >end</div>
 		<form:input type="datetime-local" step="1" id="end" path="end"/>
-		<!-- 
-		<form:input type="text" path="end" />
-		-->
+		
 	</div>
+	
+	 -->
+	
+	<div class="updateSessionField">
+		<div >start time</div>
+		
+		<input type="text" id="start" name="start" value="<c:out value="${session.start}"></c:out>" />
+	</div>
+	
+	
+	
+	<div class="updateSessionField">
+		<div >end time</div>
+		
+		<input type="text" id="end" name="end" value="<c:out value="${session.end}"></c:out>" />
+	</div>
+	
 	
 	<div class="updateSessionField">
 		<div >days</div>
