@@ -2,6 +2,7 @@ package com.TK.frioj.controllers;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,31 @@ public class AdminController {
 	@Autowired
 	private SystemHelper systemHelper;
 
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/displaySessionSubmissions")
+	public String displaySessionSubmissions(@RequestParam(value = "sessionId", defaultValue="-1")int sessionId,Model model){
+		
+		List<Submission> subs;
+		Session session = sessionDao.getSession(sessionId);
+		if(session == null){
+			subs = new LinkedList<>();
+		}else{
+			subs = submissionDao.getAllSessionSubmissions(session);
+			for (Submission submission : subs) {
+				//TODO change dao to support this opperation
+				submission.setUserName(userDao.getUserName(submission.getUserId()));
+			}
+		}
+		
+		model.addAttribute("submissions", subs);
+				
+		return "displaySessionSubmissions";
+		
+	}
+	
+	
+	
+	
 	@RequestMapping("/addProblemForm")
 	public String addProblemForm(Model model) {
 

@@ -183,5 +183,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/inoutUpLoad.jsp" />
 		<put-attribute name="title" value="InOutUpLoad" />
 	</definition>
+	
+	<definition name="displaySessionSubmissions" extends="DefaultTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/displaySessionSubmissions.jsp" />
+		<put-attribute name="title" value="SessionsSubmissions" />
+	</definition>
+	
 
 </tiles-definitions>

@@ -84,6 +84,7 @@
                     	<li><a href="/frioj/admin/addProblemInOutForm">Problem in out</a></li> 
                     	<li><a href="/frioj/admin/addArticleForm">Add article</a></li>
                     	<li><a href="/frioj/admin/submission">Display submission</a></li>
+                    	<li><a href="/frioj/admin/displaySessionSubmissions">Session submissions</a></li>
                     	<li><a href="/frioj/admin/settings/">Settings</a></li>
                     	
                    

@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -59,7 +60,14 @@ public class MysqlSessionDao implements SessionDao {
 		String sql = "SELECT `SessionId`, `Name`, `Start`, `End` FROM `Session` WHERE `SessionId` = :sessionId";
 		MapSqlParameterSource params = new MapSqlParameterSource().addValue(
 				"sessionId", sessionId);
-		return jdbcTemplate.queryForObject(sql, params, sessionRowMapper);
+		
+		Session session ;
+		try{
+			session = jdbcTemplate.queryForObject(sql, params, sessionRowMapper);
+		}catch(EmptyResultDataAccessException ex){
+			session = null;
+		}
+		return session;
 	}
 
 	@Override

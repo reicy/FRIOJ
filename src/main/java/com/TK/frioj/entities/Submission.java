@@ -20,6 +20,17 @@ public class Submission {
 	private SubmissionStatus status;
 	private int runTime;
 	private DateTime date;
+	private String userName;
+	
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public Languages getLang() {
 		return lang;
