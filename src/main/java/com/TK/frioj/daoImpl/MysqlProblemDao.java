@@ -273,7 +273,7 @@ public class MysqlProblemDao implements ProblemDao{
 		try{
 			return jdbcTemplate.queryForObject(sql, params, Integer.class).intValue();
 		}catch(EmptyResultDataAccessException ex){
-			return 0;
+			return -1;
 		}
 	}
 	

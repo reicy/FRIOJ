@@ -46,5 +46,19 @@ public interface SubmissionDao {
 	public List<Integer> getAllUserSolvedProblems(int userId);
 
 	public boolean hasUserSolvedProblem(int problemId, int userId);
+
+	public List<Submission> getAllUserSubmissions(int userId, int startingRow, int count);
+
+	public List<Submission> getAllSessionSubmissionsNamed(Session session);
+
+	public List<Submission> getAllSessionSubmissionsNamedOfUser(Session session, String login);
+
+	public int getAllSessionSubmissionsNamedOfUserCount(Session session, String login);
+
+	public int getAllSessionSubmissionsNamedCount(Session session);
+
+	public List<Submission> getAllSessionSubmissionsNamedOfUser(Session session, String login, int startRow, int count);
+
+	public List<Submission> getAllSessionSubmissionsNamed(Session session, int startRow, int count);
 	
 }

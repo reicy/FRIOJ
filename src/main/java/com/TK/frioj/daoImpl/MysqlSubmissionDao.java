@@ -25,6 +25,7 @@ import com.TK.frioj.entities.Session;
 import com.TK.frioj.entities.Submission;
 import com.TK.frioj.enums.SubmissionStatus;
 import com.TK.frioj.helpers.StringHelper;
+import com.TK.frioj.rowMappers.SubmissionNamedRowMapper;
 import com.TK.frioj.rowMappers.SubmissionRowMapper;
 import com.TK.frioj.rowMappers.UniversalStringStringArrayRowMapper;
 
@@ -43,6 +44,9 @@ public class MysqlSubmissionDao implements SubmissionDao{
 	
 	@Autowired
 	private SubmissionRowMapper submissionRowMapper;
+	
+	@Autowired
+	private SubmissionNamedRowMapper submissionNamedRowMapper;
 	
 	@Autowired
 	private UniversalStringStringArrayRowMapper universalStringStringArrayRowMapper;
@@ -99,6 +103,15 @@ public class MysqlSubmissionDao implements SubmissionDao{
 		String sql = "SELECT `SubmissionId`, `UserId`, `ProblemId`, `SourceCode`, `Language`, `Status`, `RunTime`, `Name`, `Date`, `Err` FROM `Submission` WHERE `UserId` = :userId ORDER BY `Date` desc";
 		return jdbcTemplate.query(sql, params, submissionRowMapper);
 	}
+	
+	@Override
+	public List<Submission> getAllUserSubmissions(int userId, int startingRow, int count) {
+		SqlParameterSource params = new MapSqlParameterSource("userId", userId).addValue("startingRow", startingRow).addValue("count", count);
+		String sql = "SELECT `SubmissionId`, `UserId`, `ProblemId`, `SourceCode`, `Language`, `Status`, `RunTime`, `Name`, `Date`, `Err` FROM `Submission` WHERE `UserId` = :userId ORDER BY `Date` desc LIMIT :startingRow, :count";
+		return jdbcTemplate.query(sql, params, submissionRowMapper);
+	}
+	
+	
 
 	@Override
 	public List<Integer> getAllUserNotACSubmissions(int userId) {
@@ -143,6 +156,95 @@ public class MysqlSubmissionDao implements SubmissionDao{
 		.addValue("start", session.getStart().toDate())
 		.addValue("end", session.getEnd().toDate());
 		return jdbcTemplate.query(sql, params, submissionRowMapper);
+	}
+	
+	@Override
+	public List<Submission> getAllSessionSubmissionsNamed(Session session) {
+		String sql = "SELECT `SubmissionId`, Submission.UserId, `ProblemId`, `SourceCode`, "
+				+ "`Language`, `Status`, `RunTime`, Submission.Name, `Date`, `Err`, `Login` FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) ORDER BY `Date` desc";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate());
+		return jdbcTemplate.query(sql, params, submissionNamedRowMapper);
+	}
+	
+	@Override
+	public List<Submission> getAllSessionSubmissionsNamed(Session session, int startRow, int count) {
+		String sql = "SELECT `SubmissionId`, Submission.UserId, `ProblemId`, `SourceCode`, "
+				+ "`Language`, `Status`, `RunTime`, Submission.Name, `Date`, `Err`, `Login` FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) ORDER BY `Date` desc LIMIT :startRow, :count";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate())
+		.addValue("startRow", startRow)
+		.addValue("count", count);
+		return jdbcTemplate.query(sql, params, submissionNamedRowMapper);
+	}
+	
+	@Override
+	public int getAllSessionSubmissionsNamedCount(Session session) {
+		String sql = "SELECT Count(*) FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) ORDER BY `Date` desc";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate());
+		return jdbcTemplate.queryForObject(sql, params, Integer.class);
+	}
+	
+	@Override
+	public List<Submission> getAllSessionSubmissionsNamedOfUser(Session session, String login) {
+		String sql = "SELECT `SubmissionId`, Submission.UserId, `ProblemId`, `SourceCode`, "
+				+ "`Language`, `Status`, `RunTime`, Submission.Name, `Date`, `Err`, `Login` FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) AND `Login` = :login ORDER BY `Date` desc";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate())
+		.addValue("login", login);
+		return jdbcTemplate.query(sql, params, submissionNamedRowMapper);
+	}
+	
+	@Override
+	public List<Submission> getAllSessionSubmissionsNamedOfUser(Session session, String login, int startRow, int count) {
+		String sql = "SELECT `SubmissionId`, Submission.UserId, `ProblemId`, `SourceCode`, "
+				+ "`Language`, `Status`, `RunTime`, Submission.Name, `Date`, `Err`, `Login` FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) AND `Login` = :login ORDER BY `Date` desc LIMIT :startRow, :count";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate())
+		.addValue("login", login)
+		.addValue("startRow", startRow)
+		.addValue("count", count);
+		return jdbcTemplate.query(sql, params, submissionNamedRowMapper);
+	}
+	
+	@Override
+	public int getAllSessionSubmissionsNamedOfUserCount(Session session, String login) {
+		String sql = "SELECT COUNT(*) FROM `Submission` join `User` on(Submission.UserId = User.UserId) "
+				+ "WHERE Submission.UserId IN ("+StringHelper.addCommaDelim(session.getMembers())+") "
+						+ "AND `ProblemId` IN("+StringHelper.addCommaDelim(session.getProblems())+") "
+								+ "AND (Date BETWEEN :start AND :end ) AND `Login` = :login ORDER BY `Date` desc";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource()
+		.addValue("start", session.getStart().toDate())
+		.addValue("end", session.getEnd().toDate())
+		.addValue("login", login);
+		return jdbcTemplate.queryForObject(sql, params, Integer.class);
 	}
 
 	@Override

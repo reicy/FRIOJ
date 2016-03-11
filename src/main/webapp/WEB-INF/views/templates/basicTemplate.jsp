@@ -20,7 +20,16 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 		
         
+        <!-- polymer -->
         
+        <!-- 
+        <script src="/resources/js/polymer/webcomponentsjs/webcomponents.js"></script>
+        
+        <script src="/resources/js/polymer/webcomponentsjs/webcomponents-lite.min.js"></script>
+         -->
+        <script src="<c:url value="/resources/js/polymer/webcomponentsjs/webcomponents.min.js"/>"></script>
+        
+        <link rel="import" href="<c:url value="/resources/js/polymer/elements/simpleElem.html"/>">
 		
 		<tiles1:useAttribute name="javascripts" id="javascripts" ignore="true" />
 		
@@ -32,6 +41,8 @@
 
     </head>
     <body>
+    
+       
         <div id="main">
         <a href="/frioj/" style="text-decoration: none">
         <header>

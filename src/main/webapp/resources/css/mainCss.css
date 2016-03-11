@@ -21,7 +21,6 @@ body {
 	/* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000',
 		endColorstr='#1a000000', GradientType=0); /* IE6-9 */
-		
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 }
@@ -111,7 +110,6 @@ header {
 	text-decoration: none;
 	color: #023402;
 	font-size: 14px;
-	
 }
 
 #menu a:hover {
@@ -156,7 +154,8 @@ footer p {
 	padding: 0px; margin-top 30px;
 	margin-bottom: 60px;
 }
-.gap{
+
+.gap {
 	margin-bottom: 60px;
 }
 
@@ -300,10 +299,10 @@ footer p {
 
 .sessionTable td {
 	text-align: center;
-	
 }
+
 .sessionTable th {
-	word-wrap: break-word;	
+	word-wrap: break-word;
 }
 
 .firstRow a {
@@ -433,14 +432,12 @@ div.greyButtonDiv:HOVER {
 }
 
 .width130px {
-	
 	width: 130px;
 }
 
-.wrapped{
+.wrapped {
 	word-wrap: break-word;
 }
-
 
 .inlineDiv {
 	display: inline-block;
@@ -902,4 +899,12 @@ h4 {
 .updateSessionFieldLabel {
 	color: #001902;
 	font-weight: bold;
+}
+
+.centerVertAllignForPaginators{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	height: 50px;
+	align-items:center;
 }

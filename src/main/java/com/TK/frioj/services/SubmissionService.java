@@ -96,7 +96,12 @@ public class SubmissionService {
 			return "Not a number.";
 		}
 		
+		
+		
 		int maxInputSize = problemDao.getMaxInputFileSizeOfProblem(problemId);
+		
+		if(maxInputSize == -1)return "Problem Id is not valid.";
+		
 		if(code.length()>maxInputSize){
 			return "Max length of input exceeded.";
 		}

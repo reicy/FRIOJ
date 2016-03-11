@@ -70,21 +70,64 @@ public class AdminController {
 
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/displaySessionSubmissions")
-	public String displaySessionSubmissions(@RequestParam(value = "sessionId", defaultValue="-1")int sessionId,Model model){
+	public String displaySessionSubmissions(@RequestParam(value = "sessionId", defaultValue="-1")int sessionId,
+											@RequestParam(value = "name", defaultValue="")String login,
+											@RequestParam(value = "page", defaultValue="1")int selectedPage,Model model){
+		
+		
+
+		//TODO into settings
+		int sessionSubsMaxPerPage = 30;
 		
 		List<Submission> subs;
+		int page = 1;
+		int count;
+		int maxPage = 1;
+		int minPage = 1;
+		String params = "";
 		Session session = sessionDao.getSession(sessionId);
 		if(session == null){
 			subs = new LinkedList<>();
+			
 		}else{
-			subs = submissionDao.getAllSessionSubmissions(session);
-			for (Submission submission : subs) {
-				//TODO change dao to support this opperation
-				submission.setUserName(userDao.getUserName(submission.getUserId()));
+			
+			
+			if(login.equals(""))count = submissionDao.getAllSessionSubmissionsNamedCount(session);
+			else count = submissionDao.getAllSessionSubmissionsNamedOfUserCount(session, login);
+			
+			
+			
+			maxPage = count/sessionSubsMaxPerPage;
+			if(maxPage*sessionSubsMaxPerPage<count)maxPage++;
+			
+			if(selectedPage< minPage || selectedPage >maxPage){
+				page = minPage;
+			}else{
+				page = selectedPage;
 			}
+			
+			
+			if(login.equals("")){
+				subs = submissionDao.getAllSessionSubmissionsNamed(session,(page-1)*sessionSubsMaxPerPage,sessionSubsMaxPerPage);
+				params="sessionId="+sessionId;
+			}
+			else {
+				subs = submissionDao.getAllSessionSubmissionsNamedOfUser(session, login,(page-1)*sessionSubsMaxPerPage,sessionSubsMaxPerPage);
+				params="sessionId="+sessionId+"&name="+login;
+			}
+			
+		
 		}
 		
 		model.addAttribute("submissions", subs);
+		
+		
+		
+		
+		model.addAttribute("page", page);
+		model.addAttribute("minPage", minPage);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("params", params);
 				
 		return "displaySessionSubmissions";
 		

@@ -1,0 +1,148 @@
+
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="custom-paginator"
+	attributes="url,params,page,minpage,maxpage"> <template>
+<style>
+#cpWrap {
+	align-items: center;
+	text-align: center
+}
+
+#cpMain {
+	clear: left;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#cpMain>div {
+	height: 32px;
+	width: 32px;
+	max-width: 40px;
+	margin: 2px;
+	background-color: #999999;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#cpMain>div:hover {
+	background-color: #555555;
+	cursor: pointer;
+	cursor: hand;
+}
+</style>
+
+
+<div id="cpWrap">
+
+	<div id="cpMain">
+
+		<div id="cpFirstPage" on-click="changePage">|&#60&#60&#60</div>
+		<div id="cpPageMinusTwo" on-click="changePage">&#60&#60</div>
+		<div id="cpPageMinusOne" on-click="changePage">&#60</div>
+		<div id="cpCurrent" on-click="changePage">{{page}}</div>
+		<div id="cpPagePlusOne" on-click="changePage">&#62</div>
+		<div id="cpPagePlusTwo" on-click="changePage">&#62&#62</div>
+		<div id="cpLastPage" on-click="changePage">&#62&#62&#62|</div>
+
+	</div>
+
+</div>
+
+
+</template> <script>
+	// element registration
+	Polymer({
+		is : "custom-paginator",
+		properties : {
+
+			url : {
+				type : String,
+				value : ""
+			},
+			params : {
+				type : String,
+				value : ""
+			},
+			page : {
+				type : Number,
+				value : ""
+			},
+			minpage : {
+				type : Number,
+				value : ""
+			},
+			maxpage : {
+				type : Number,
+				value : ""
+			},
+
+		},
+		ready : function() {
+			if (this.page == this.minpage) {
+				this.$.cpFirstPage.style.display = "none";
+				this.$.cpPageMinusTwo.style.display = "none";
+				this.$.cpPageMinusOne.style.display = "none";
+			}
+			if (this.page == this.minpage + 1) {
+				this.$.cpPageMinusTwo.style.display = "none";
+				this.$.cpPageMinusOne.style.display = "none";
+			}
+			if (this.page == this.minpage + 2) {
+				this.$.cpPageMinusTwo.style.display = "none";
+			}
+
+			if (this.page == this.maxpage) {
+				this.$.cpLastPage.style.display = "none";
+				this.$.cpPagePlusTwo.style.display = "none";
+				this.$.cpPagePlusOne.style.display = "none";
+			}
+			if (this.page == this.maxpage - 1) {
+				this.$.cpPagePlusTwo.style.display = "none";
+				this.$.cpPagePlusOne.style.display = "none";
+			}
+			if (this.page == this.maxpage - 2) {
+				this.$.cpPagePlusTwo.style.display = "none";
+			}
+
+		},
+		changePage : function(event, detail, sender) {
+
+			var next = 1;
+			switch (event.target.id) {
+			case "cpFirstPage":
+				next = this.minpage + 0;
+				break;
+			case "cpPageMinusTwo":
+				next = this.page - 2;
+				break;
+			case "cpPageMinusOne":
+				next = this.page - 1;
+				break;
+			case "cpCurrent":
+				next = this.page + 0;
+				break;
+			case "cpPagePlusOne":
+				next = this.page + 1;
+				break;
+			case "cpPagePlusTwo":
+				next = this.page + 2;
+				break;
+			case "cpLastPage":
+				next = this.maxpage;
+				break;
+			}
+			var link = this.url + "?";
+			if (this.params != "") {
+				link += this.params + "&"
+			}
+			link += "page=" + next;
+
+			console.log(link);
+			window.location.href = link;
+
+		}
+	});
+</script> </dom-module>

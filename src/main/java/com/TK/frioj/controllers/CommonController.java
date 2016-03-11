@@ -98,12 +98,23 @@ public class CommonController {
 	@Autowired
 	private SubmissionService submissionService;
 
+	
 	@RequestMapping("/displayAllSubmissions")
-	public String displayAllSubmissions(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String displayAllSubmissionsNew(@RequestParam(defaultValue = "1") int page, Model model) {
 		int userId = userDao.getUserId(AuthorizationHelper.getCurrentUserName());
-		ArrayList<Submission> submissionList = new ArrayList<Submission>(submissionDao.getAllUserSubmissions(userId));
-		ArrayList<Submission> temp = new ArrayList<Submission>(40);
-
+		ArrayList<Submission> submissionList;
+		
+		int maxSubsPerPage = settingsDao.getMaxSubmissionsPerPageCount();
+		int submissionsCount = submissionDao.getAllUserSubmissionsCount(userId);
+			
+		int maxPageNum = submissionsCount / maxSubsPerPage;
+		if (maxPageNum * maxSubsPerPage != submissionsCount)maxPageNum++;
+		if (page < 1 || page > maxPageNum) {
+			page = 1;
+		}
+		submissionList = new ArrayList<Submission>(submissionDao.getAllUserSubmissions(userId,((page-1)*maxSubsPerPage),maxSubsPerPage));
+		
+		
 		for (Submission sub : submissionList) {
 			if ((sub.getStatus() == SubmissionStatus.WA && StringHelper.isWaDueToDifferentSize(sub))
 					|| sub.getStatus() == SubmissionStatus.RTE || sub.getStatus() == SubmissionStatus.CE) {
@@ -121,19 +132,6 @@ public class CommonController {
 				sub.setErr("forbidden operation, please contact administrator");
 			}
 		}
-
-		int maxSubsPerPage = settingsDao.getMaxSubmissionsPerPageCount();
-		int maxPageNum = submissionList.size() / maxSubsPerPage;
-		if (maxPageNum * maxSubsPerPage != submissionList.size())
-			maxPageNum++;
-		if (page < 1 || page > maxPageNum) {
-			page = 1;
-		}
-
-		for (int i = (page - 1) * maxSubsPerPage; i < Math.min(page * maxSubsPerPage, submissionList.size()); i++) {
-			temp.add(submissionList.get(i));
-		}
-		submissionList = temp;
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("pages", maxPageNum);
@@ -438,6 +436,8 @@ public class CommonController {
 	public String submitProblem(@RequestParam(value = "problemId", required = false) String id,
 			@RequestParam(value = "code", required = false) String sourceCode,
 			@RequestParam(value = "lang") Languages lang, Model model) {
+		
+		
 
 		String response = submissionService.runSubmission(id, sourceCode, lang,
 				AuthorizationHelper.getCurrentUserName());
